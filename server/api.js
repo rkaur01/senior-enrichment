@@ -50,18 +50,26 @@ api.get('/students/:id', (req, res, next) => {
 // POST
 // - new campus
 // - new student
-api.post('/campuses', (req, res) => {
+api.post('/campuses', (req, res, next) => {
 	Campus.create({
 		name: req.body.name,
 		image: req.body.image
 	})
+	.then(function (newCampus) {
+		res.status(201).json(newCampus);
+	  })
+	  .catch(next);
 })
 
-api.post('/students', (req, res) => {
+api.post('/students', (req, res, next) => {
 	Student.create({
 		name: req.body.name,
 		email: req.body.email
 	})	
+	.then(function (newStudent) {
+		res.status(201).json(newStudent);
+	  })
+	  .catch(next);
 })
 
 
@@ -74,7 +82,7 @@ api.put('/students/:id', (req, res, next) => {
 		returning: true
 	  })
 	  .then(function (updatedStudent) {
-		res.status(200).json('Student updated successfully', updatedStudent);
+		res.status(200).json(updatedStudent);
 	  })
 	  .catch(next);
 })
@@ -85,7 +93,7 @@ api.put('/campuses/:id', (req, res, next) => {
 		returning: true
 	  })
 	  .then(function (updatedCampus) {
-		res.status(200).json('Campus updated successfully', updatedCampus);
+		res.status(200).json(updatedCampus);
 	  })
 	  .catch(next);	
 })
