@@ -3,7 +3,6 @@ import {withRouter, NavLink} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 function StudentList(props) {
-    console.log('are we here')
     const { students } = props;
 
     return(

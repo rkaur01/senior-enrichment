@@ -1,27 +1,36 @@
 import React from 'react';
-import {withRouter, NavLink} from 'react-router-dom'
+import Campus from './Campus'
+import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 function CampusList(props) {
     const { campuses } = props;
 
-    return(
-        <ul>
-        {campuses.map(campus => {
-            return (
-                <li key = {campus.id}>
-                    <NavLink to={`/campuses/${campus.id}`}>
-                        <span>{campus.name} </span>
-                    </NavLink>
-                </li>
-            )
-        })}
-        </ul>
-    )
+    return (
+        <div>
+            <h3>Campuses</h3>
+            <div className="row">
+                {
+                    campuses.map(campus => (
+                        <div className="col-xs-4" key={campus.id}>
+                            <NavLink className="thumbnail" to={`/campuses/${campus.id}`}>
+                                <img src={campus.image} />
+                                <div className="caption">
+                                    <h3>
+                                        <span>{campus.name}</span>
+                                    </h3>
+                                </div>
+                            </NavLink>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    );
 }
 
-const mapStateToProps = function(state){
-    return{
+const mapStateToProps = function (state) {
+    return {
         campuses: state.campuses
     }
 }

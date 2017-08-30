@@ -9,7 +9,6 @@ import Root from './components/Root'
 render (
   <Provider store={store}>
     <div>
-      <h1>HAYYYY</h1>
       <Root/>
     </div>
   </Provider>,
