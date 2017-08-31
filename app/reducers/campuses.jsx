@@ -28,17 +28,17 @@ export function fetchCampuses() {
     };
 }
 
-export function fetchStudentCampus(studentId) {
-    return function thunk(dispatch){
-        return axios.get(`/api/students/${studentId}/campus`)
-            .then(res => res.data)
-            .then(campus => {
-                console.log("SUPPP IM YOUR FETCHSTUDENTCAMPUS THUNK", campus)
-                const action = getCampus(campus);
-                dispatch(action)
-            })
-    }
-}
+// export function fetchStudentCampus(studentId) {
+//     return function thunk(dispatch){
+//         return axios.get(`/api/students/${studentId}/campus`)
+//             .then(res => res.data)
+//             .then(campus => {
+//                 console.log("SUPPP IM YOUR FETCHSTUDENTCAMPUS THUNK", campus)
+//                 const action = getCampus(campus);
+//                 dispatch(action)
+//             })
+//     }
+// }
 
 export function postCampus(campus, history) {
 

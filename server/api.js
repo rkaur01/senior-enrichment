@@ -49,21 +49,21 @@ api.get('/students/:id', (req, res, next) => {
 })
 
 //get student campus
-api.get('/students/:id/campus', (req, res, next) => {
-	Student.find(
-		{
-			where:
-			{ id: req.params.id }
-		})
-		.then(student => {
-			Campus.find(
-				{
-					where:
-					{ id: student.campusId}
-				})
-				.then(campus => res.json(campus))
-		})	
-})
+// api.get('/students/:id/campus', (req, res, next) => {
+// 	Student.find(
+// 		{
+// 			where:
+// 			{ id: req.params.id }
+// 		})
+// 		.then(student => {
+// 			Campus.find(
+// 				{
+// 					where:
+// 					{ id: student.campusId}
+// 				})
+// 				.then(campus => res.json(campus))
+// 		})	
+// })
 
 
 // POST

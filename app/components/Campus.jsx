@@ -34,7 +34,7 @@ const mapStateToProps = function (state, ownProps) {
     const campusId = Number(ownProps.match.params.campusId)
     const selectedCampus = state.campuses.filter(campus => campus.id == campusId)[0]
     const campusStudents = state.students.filter(student => student.campusId == campusId)
-    console.log(campusStudents)
+    
     return {
         campus: selectedCampus,
         students: campusStudents
