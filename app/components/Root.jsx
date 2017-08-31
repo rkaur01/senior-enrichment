@@ -23,10 +23,14 @@ export default class Main extends Component {
       <Router>
         <div>
           <Navbar/>
+          <Switch>
           <Route exact path="/campuses" component={CampusList} />
-          <Route exact path="/students" component={StudentList} />
           <Route path="/campuses/:campusId" component={Campus} />
+          </Switch>
+          <Switch>
+          <Route exact path="/students" component={StudentList} />          
           <Route exact path="/students/:studentId" component={Student} />          
+          </Switch>
         </div>
       </Router>
 

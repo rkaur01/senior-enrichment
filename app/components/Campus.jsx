@@ -1,17 +1,29 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 function Campus(props) {
 
-    const { campus } = props
+    const { campus, students } = props
 
     return (
         <campus>
             {!!campus &&
                 <div>
+                    <h2>{campus.name}</h2>
                     <img className="media-object" src={campus.image} alt="image" />
-                    <h4>{campus.name}</h4>
+                    <ul>
+                    {!!students.length && students.map(student => 
+                        (
+                            <li key = {student.id}>
+                            <NavLink to={`/students/${student.id}`}>
+                                <span>{student.name} </span>
+                            </NavLink>
+                        </li>
+                        )
+                    )
+                    }
+                    </ul>
                 </div>
             }
         </campus>
@@ -21,8 +33,11 @@ function Campus(props) {
 const mapStateToProps = function (state, ownProps) {
     const campusId = Number(ownProps.match.params.campusId)
     const selectedCampus = state.campuses.filter(campus => campus.id == campusId)[0]
+    const campusStudents = state.students.filter(student => student.campusId == campusId)
+    console.log(campusStudents)
     return {
-        campus: selectedCampus
+        campus: selectedCampus,
+        students: campusStudents
     }
 }
 
