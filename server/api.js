@@ -81,7 +81,11 @@ api.put('/students/:id', (req, res, next) => {
 		returning: true
 	})
 		.then(function (updatedStudent) {
-			res.status(200).json(updatedStudent[1][0]);
+			const student = updatedStudent[1][0]
+			Student.findById(student.id)
+			.then(updStudent => {
+				res.status(200).json(updStudent);
+			})
 		})
 		.catch(next);
 })

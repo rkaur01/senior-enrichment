@@ -77,7 +77,6 @@ export default function reducer(state = [], action) {
             return [...state, action.campus];
 
         case UPDATE_CAMPUS:
-            console.log('what is ', action.campus)
             const updatedCampuses = state.map((campus) => {
                 if (campus.id !== action.campus.id) {
                     return campus

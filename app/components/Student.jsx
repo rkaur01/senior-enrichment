@@ -15,8 +15,6 @@ class Student extends Component {
 
     render() {
         const { campuses, student, selectedCampusId, handleSubmit, handleChange } = this.props;
-        
-
         return (
             <student>
                 {!!student &&
@@ -91,6 +89,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             }
             if(campusId){
                 updatedProps.campusId=campusId
+                dispatch(writeStudentCampus(campusId))
             }
             dispatch(updateStudent(studentId,updatedProps, ownProps.history));
         }
