@@ -89,7 +89,6 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             }
             if(campusId){
                 updatedProps.campusId=campusId
-                dispatch(writeStudentCampus(campusId))
             }
             dispatch(updateStudent(studentId,updatedProps, ownProps.history));
         }
