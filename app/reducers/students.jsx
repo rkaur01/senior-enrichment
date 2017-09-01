@@ -50,7 +50,7 @@ export default function reducer(state = [], action) {
 
         case GET_STUDENT:
             return [...state, action.student];
-
+            
         default:
             return state;
     }

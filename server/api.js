@@ -48,23 +48,6 @@ api.get('/students/:id', (req, res, next) => {
 		.catch(next)
 })
 
-//get student campus
-// api.get('/students/:id/campus', (req, res, next) => {
-// 	Student.find(
-// 		{
-// 			where:
-// 			{ id: req.params.id }
-// 		})
-// 		.then(student => {
-// 			Campus.find(
-// 				{
-// 					where:
-// 					{ id: student.campusId}
-// 				})
-// 				.then(campus => res.json(campus))
-// 		})	
-// })
-
 
 // POST
 // - new campus
@@ -81,10 +64,7 @@ api.post('/campuses', (req, res, next) => {
 })
 
 api.post('/students', (req, res, next) => {
-	Student.create({
-		name: req.body.name,
-		email: req.body.email
-	})
+	Student.create(req.body)
 		.then(function (newStudent) {
 			res.status(201).json(newStudent);
 		})

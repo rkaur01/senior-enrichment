@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import store from '../store';
 import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { fetchStudentCampus } from '../reducers/campuses'
 import { getStudent, fetchStudents } from '../reducers/students'
 
 class Student extends Component{
@@ -21,10 +20,12 @@ class Student extends Component{
                 <div>
                     <h1>{student.name}</h1>
                     <h3>Email: {student.email}</h3>
-                    <h3>Campus: </h3>                                    
-                <NavLink to={`/campuses/${student.campus.id}`}>
-            <span>{student.campus.name} </span>
-                    </NavLink>
+                    <h3>Campus:                                     
+                {student.campus?<NavLink to={`/campuses/${student.campus.id}`}>
+            <span> {student.campus.name} </span>
+                    </NavLink>:
+                <span> No campus </span>}
+                    </h3> 
 
                 </div>
             }

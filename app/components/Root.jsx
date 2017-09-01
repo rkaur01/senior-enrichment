@@ -4,6 +4,7 @@ import CampusList from './CampusList';
 import Campus from './Campus';
 import StudentList from './StudentList';
 import Student from './Student';
+import NewStudent from './NewStudent';
 import Navbar from './Navbar';
 import store from '../store';
 import { fetchCampuses } from '../reducers/campuses'
@@ -26,10 +27,9 @@ export default class Main extends Component {
           <Switch>
           <Route exact path="/campuses" component={CampusList} />
           <Route path="/campuses/:campusId" component={Campus} />
-          </Switch>
-          <Switch>
-          <Route exact path="/students" component={StudentList} />          
-          <Route exact path="/students/:studentId" component={Student} />          
+          <Route exact path="/students" component={StudentList} />  
+          <Route exact path="/students/addStudent" component={NewStudent} />                    
+          <Route path="/students/:studentId" component={Student} />
           </Switch>
         </div>
       </Router>
