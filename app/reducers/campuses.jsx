@@ -41,6 +41,18 @@ export function postCampus(campus, history) {
     };
 }
 
+export function updateCampus(campusId, updateProp, history) {
+    
+        return function thunk(dispatch) {
+            return axios.put(`/api/campuses/${campusId}`, updateProp)
+                .then(res => res.data)
+                .then(updatedCampus => {
+                    dispatch(getCampus(updatedCampus));
+                    history.push(`/campuses/${campusId}`);
+                });
+        };
+}
+
 // REDUCER
 export default function reducer(state = [], action) {
 
