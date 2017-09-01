@@ -7,7 +7,6 @@ import { writeStudentCampus } from '../reducers/studentCampus'
 
 function NewStudent(props) {
     const { campuses, selectedCampusId, handleSubmit, handleChange } = props;
-    console.log('is this an id', selectedCampusId)
     return (
         <div>
         <h2>Add A Student</h2>
@@ -49,7 +48,6 @@ const mapStateToProps = function (state) {
 const mapDispatchToProps = function (dispatch, ownProps) {
     return {
         handleChange(evt){
-            console.log('what is', evt.target.value)
             dispatch(writeStudentCampus(evt.target.value))
         },
         handleSubmit(evt, campusId) {

@@ -40,6 +40,20 @@ export function postStudent(student, history) {
     };
 }
 
+export function updateStudent(studentId, updateProp, history) {
+
+    return function thunk(dispatch) {
+        console.log('wat is ', studentId)
+        console.log('updateoprp', updateProp)
+        return axios.put(`/api/students/${studentId}`, updateProp)
+            .then(res => res.data)
+            .then(updatedStudent => {
+                dispatch(getStudent(updatedStudent));
+                history.push(`/students/${studentId}`);
+            });
+    };
+}
+
 // REDUCER
 export default function reducer(state = [], action) {
 
@@ -50,7 +64,7 @@ export default function reducer(state = [], action) {
 
         case GET_STUDENT:
             return [...state, action.student];
-            
+
         default:
             return state;
     }
