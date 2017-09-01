@@ -81,7 +81,7 @@ api.put('/students/:id', (req, res, next) => {
 		returning: true
 	})
 		.then(function (updatedStudent) {
-			res.status(200).json(updatedStudent);
+			res.status(200).json(updatedStudent[1][0]);
 		})
 		.catch(next);
 })
@@ -92,7 +92,7 @@ api.put('/campuses/:id', (req, res, next) => {
 		returning: true
 	})
 		.then(function (updatedCampus) {
-			res.status(200).json(updatedCampus);
+			res.status(200).json(updatedCampus[1][0]);
 		})
 		.catch(next);
 })

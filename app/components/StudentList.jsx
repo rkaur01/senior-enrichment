@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { postStudent } from '../reducers/students'
+import { postStudent, removeStudent } from '../reducers/students'
 
 
 function StudentList(props) {

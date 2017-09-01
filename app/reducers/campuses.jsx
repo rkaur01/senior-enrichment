@@ -3,6 +3,8 @@ import axios from 'axios';
 // ACTION TYPES
 const GET_CAMPUS = 'GET_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
+const REMOVE_CAMPUS = 'REMOVE_CAMPUS';
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 
 // ACTION CREATORS
 export function getCampus(campus) {
@@ -12,6 +14,16 @@ export function getCampus(campus) {
 
 export function getCampuses(campuses) {
     const action = { type: GET_CAMPUSES, campuses };
+    return action;
+}
+
+export function updateCampusAction(campus) {
+    const action = { type: UPDATE_CAMPUS, campus };
+    return action;
+}
+
+export function removeCampus(campus) {
+    const action = { type: REMOVE_CAMPUS, campus };
     return action;
 }
 
@@ -42,15 +54,15 @@ export function postCampus(campus, history) {
 }
 
 export function updateCampus(campusId, updateProp, history) {
-    
-        return function thunk(dispatch) {
-            return axios.put(`/api/campuses/${campusId}`, updateProp)
-                .then(res => res.data)
-                .then(updatedCampus => {
-                    dispatch(getCampus(updatedCampus));
-                    history.push(`/campuses/${campusId}`);
-                });
-        };
+
+    return function thunk(dispatch) {
+        return axios.put(`/api/campuses/${campusId}`, updateProp)
+            .then(res => res.data)
+            .then(updatedCampus => {
+                dispatch(updateCampusAction(updatedCampus));
+                history.push(`/campuses/${campusId}`);
+            });
+    };
 }
 
 // REDUCER
@@ -62,7 +74,22 @@ export default function reducer(state = [], action) {
             return action.campuses;
 
         case GET_CAMPUS:
-            return [...state, action.campus];  
+            return [...state, action.campus];
+
+        case UPDATE_CAMPUS:
+            console.log('what is ', action.campus)
+            const updatedCampuses = state.map((campus) => {
+                if (campus.id !== action.campus.id) {
+                    return campus
+                }
+                return action.campus
+            })
+            return updatedCampuses
+
+
+        case REMOVE_CAMPUS:
+            const filteredCampuses = state.filter(campus => campus.id !== action.campus.id)
+            return filteredCampuses
 
         default:
             return state;

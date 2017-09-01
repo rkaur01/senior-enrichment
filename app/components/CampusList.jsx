@@ -2,7 +2,7 @@ import React from 'react';
 import Campus from './Campus'
 import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { postCampus } from '../reducers/campuses'
+import { postCampus, removeCampus } from '../reducers/campuses'
 
 
 function CampusList(props) {

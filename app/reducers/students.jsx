@@ -3,6 +3,9 @@ import axios from 'axios';
 // ACTION TYPES
 const GET_STUDENT = 'GET_STUDENT';
 const GET_STUDENTS = 'GET_STUDENTS';
+const UPDATE_STUDENT = 'UPDATE_STUDENT';
+const REMOVE_STUDENT = 'REMOVE_STUDENT';
+
 
 // ACTION CREATORS
 export function getStudent(student) {
@@ -12,6 +15,16 @@ export function getStudent(student) {
 
 export function getStudents(students) {
     const action = { type: GET_STUDENTS, students };
+    return action;
+}
+
+export function updateStudentAction(student){
+    const action = { type: UPDATE_STUDENT, student };
+    return action;
+}
+
+export function removeStudent(student) {
+    const action = { type: REMOVE_STUDENT, student };
     return action;
 }
 
@@ -46,7 +59,7 @@ export function updateStudent(studentId, updateProp, history) {
         return axios.put(`/api/students/${studentId}`, updateProp)
             .then(res => res.data)
             .then(updatedStudent => {
-                dispatch(getStudent(updatedStudent));
+                dispatch(updateStudentAction(updatedStudent));
                 history.push(`/students/${studentId}`);
             });
     };
@@ -62,6 +75,19 @@ export default function reducer(state = [], action) {
 
         case GET_STUDENT:
             return [...state, action.student];
+
+        case UPDATE_STUDENT:
+            const updatedStudents = state.map((student) => {
+                if (student.id !== action.student.id) {
+                    return student
+                }
+                return action.student
+            })
+            return updatedStudents
+
+        case REMOVE_STUDENT:
+            const filteredStudents = state.filter(student => student.id !== action.student.id)
+            return filteredStudents
 
         default:
             return state;
